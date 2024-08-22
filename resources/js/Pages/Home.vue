@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import Sidebar from "../Shared/Sidebar.vue";
-</script>
+<script setup lang="ts"></script>
 
-<template>
-    <div>
-        <Sidebar />
-    </div>
-</template>
+<template></template>
