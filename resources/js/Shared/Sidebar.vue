@@ -17,10 +17,24 @@ import SidebarLink from "./SidebarLink.vue";
             </div>
 
             <div class="space-y-5 text-lg flex flex-col">
-                <SidebarLink href="/">Home</SidebarLink>
-                <SidebarLink href="/booking">Booking</SidebarLink>
-                <SidebarLink href="/reservations">Reservations</SidebarLink>
-                <SidebarLink href="/drivers">Drivers</SidebarLink>
+                <SidebarLink href="/" :active="$page.component === 'Home'"
+                    >Home</SidebarLink
+                >
+                <SidebarLink
+                    href="/booking"
+                    :active="$page.component === 'Booking'"
+                    >Booking</SidebarLink
+                >
+                <SidebarLink
+                    href="/reservations"
+                    :active="$page.component === 'Reservations'"
+                    >Reservations</SidebarLink
+                >
+                <SidebarLink
+                    href="/drivers"
+                    :active="$page.component === 'Drivers'"
+                    >Drivers</SidebarLink
+                >
             </div>
         </div>
 
