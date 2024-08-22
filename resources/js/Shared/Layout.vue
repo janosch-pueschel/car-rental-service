@@ -3,7 +3,10 @@ import Sidebar from "./Sidebar.vue";
 </script>
 
 <template>
-    <div>
+    <div class="flex space-x-5">
         <Sidebar />
+        <div>
+            <slot></slot>
+        </div>
     </div>
 </template>
