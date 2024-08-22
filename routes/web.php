@@ -14,3 +14,7 @@ Route::get('/booking', function() {
 Route::get('/reservations', function(){
     return Inertia::render('Reservations');
 });
+
+Route::get('/drivers', function(){
+    return Inertia::render('Drivers');
+});
