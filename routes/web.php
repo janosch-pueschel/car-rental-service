@@ -6,3 +6,7 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Home');
 });
+
+Route::get('/booking', function() {
+    return Inertia::render('Booking');
+});
