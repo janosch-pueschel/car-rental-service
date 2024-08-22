@@ -2,7 +2,12 @@
 export default {
     content: ["./resources/js/**/*.{vue,js}"],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                poppins: ["Poppins", "sans-serif"],
+                "work-sans": ["Work Sans", "sans-serif"],
+            },
+        },
     },
     plugins: [],
 };
