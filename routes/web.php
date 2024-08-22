@@ -10,3 +10,7 @@ Route::get('/', function () {
 Route::get('/booking', function() {
     return Inertia::render('Booking');
 });
+
+Route::get('/reservations', function(){
+    return Inertia::render('Reservations');
+});
