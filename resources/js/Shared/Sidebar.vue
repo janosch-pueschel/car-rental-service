@@ -4,35 +4,38 @@ import SidebarLink from "./SidebarLink.vue";
 
 <template>
     <div
-        class="bg-light-grey min-w-fit max-w-72 h-screen w-full p-4 text-neutral-900 font-work-sans shadow-xl flex flex-col justify-between sticky top-0"
+        class="min-w-fit max-w-72 h-screen w-full p-4 text-white bg-dark-grey font-work-sans flex flex-col justify-between sticky top-0"
     >
         <div class="space-y-20">
-            <div
-                class="flex items-center space-x-3 border-b-2 border-white pb-2"
-            >
-                <img src="https://placehold.co/50/f5bf03/blue" alt="" />
-                <h1 class="font-poppins italic text-3xl text-blue font-bold">
-                    PrimeDrive
-                </h1>
-            </div>
+            <img
+                src="../../img/europcar_logo.png"
+                alt="europcar_logo"
+                class="max-w-60"
+            />
 
             <div class="space-y-5 text-lg flex flex-col">
-                <SidebarLink href="/" :active="$page.component === 'Home'"
+                <SidebarLink
+                    href="/"
+                    :active="$page.component === 'Home'"
+                    :icon="'pi-home'"
                     >Home</SidebarLink
                 >
                 <SidebarLink
                     href="/booking"
                     :active="$page.component === 'Booking'"
+                    :icon="'pi-plus-circle'"
                     >Booking</SidebarLink
                 >
                 <SidebarLink
                     href="/reservations"
                     :active="$page.component === 'Reservations'"
+                    :icon="'pi-list'"
                     >Reservations</SidebarLink
                 >
                 <SidebarLink
                     href="/drivers"
                     :active="$page.component === 'Drivers'"
+                    :icon="'pi-user'"
                     >Drivers</SidebarLink
                 >
             </div>
