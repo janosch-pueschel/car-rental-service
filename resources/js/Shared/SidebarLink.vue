@@ -1,11 +1,14 @@
 <script setup lang="ts">
-defineProps({ active: Boolean });
+defineProps<{ active: boolean; icon?: string }>();
 </script>
 
 <template>
     <Link
-        class="px-3 py-2 hover:font-semibold"
-        :class="{ 'bg-gold rounded-md': active }"
-        ><slot></slot
+        class="px-5 py-2 flex items-center"
+        :class="{
+            'bg-green rounded-full hover:font-normal': active,
+            'hover:font-semibold': !active,
+        }"
+        ><i v-if="icon" class="pi mr-2 text-sm" :class="icon"></i><slot></slot
     ></Link>
 </template>
