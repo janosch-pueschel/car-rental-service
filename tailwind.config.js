@@ -8,12 +8,14 @@ export default {
                 "work-sans": ["Work Sans", "sans-serif"],
             },
             colors: {
-                blue: "#003366",
-                gold: "#f5bf03",
-                "light-grey": "#E0E0E0",
-                "dark-grey": "#4D4D4D",
+                green: "#009900",
+                yellow: "#ffdd00",
+                "light-grey": "#8c92ac",
+                "dark-grey": "#373A40",
+                white: "#f3f4f6",
             },
         },
     },
     plugins: [],
 };
+
