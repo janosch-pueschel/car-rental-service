@@ -6,7 +6,7 @@ defineProps<{ active: boolean; icon?: string }>();
     <Link
         class="px-5 py-2 flex items-center"
         :class="{
-            'bg-green rounded-full hover:font-normal': active,
+            'bg-white/25 border-l-4 px-4 hover:font-normal': active,
             'hover:font-semibold': !active,
         }"
         ><i v-if="icon" class="pi mr-2 text-sm" :class="icon"></i><slot></slot
