@@ -4,15 +4,9 @@ import SidebarLink from "./SidebarLink.vue";
 
 <template>
     <div
-        class="min-w-fit max-w-72 h-screen w-full p-4 text-white bg-dark-grey font-work-sans flex flex-col justify-between sticky top-0"
+        class="w-64 h-screen py-5 text-white bg-dark-grey font-work-sans flex flex-col justify-between sticky top-0 shrink-0"
     >
         <div class="space-y-20">
-            <img
-                src="../../img/europcar_logo.png"
-                alt="europcar_logo"
-                class="max-w-60"
-            />
-
             <div class="space-y-5 text-lg flex flex-col">
                 <SidebarLink
                     href="/"
@@ -22,15 +16,9 @@ import SidebarLink from "./SidebarLink.vue";
                 >
                 <SidebarLink
                     href="/booking"
-                    :active="$page.component === 'Booking'"
-                    :icon="'pi-plus-circle'"
-                    >Booking</SidebarLink
-                >
-                <SidebarLink
-                    href="/reservations"
-                    :active="$page.component === 'Reservations'"
+                    :active="$page.component === 'Booking/Index'"
                     :icon="'pi-list'"
-                    >Reservations</SidebarLink
+                    >Bookings</SidebarLink
                 >
                 <SidebarLink
                     href="/drivers"
