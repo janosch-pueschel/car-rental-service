@@ -12,10 +12,10 @@ export default {
                 yellow: "#ffdd00",
                 "light-grey": "#8c92ac",
                 "dark-grey": "#373A40",
+                black: "#212226",
                 white: "#f3f4f6",
             },
         },
     },
     plugins: [],
 };
-
