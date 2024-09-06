@@ -1,11 +1,13 @@
 <script setup>
+import Navbar from "./Navbar.vue";
 import Sidebar from "./Sidebar.vue";
 </script>
 
 <template>
-    <div class="flex space-x-5 bg-white">
+    <Navbar />
+    <div class="flex bg-white">
         <Sidebar />
-        <div>
+        <div class="w-full m-5">
             <slot></slot>
         </div>
     </div>
