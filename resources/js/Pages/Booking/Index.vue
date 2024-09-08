@@ -41,7 +41,12 @@ const getCategoryBadge = (category) => {
     <div>
         <div class="flex items-center space-x-5">
             <Heading title="Bookings" />
-            <Button title="Add" icon="pi-plus" />
+            <Button
+                title="Add"
+                icon="pi-plus"
+                type="link"
+                href="booking/create"
+            />
         </div>
 
         <div class="border py-5 rounded-lg grid grid-cols-6-fit gap-6 w-fit">
