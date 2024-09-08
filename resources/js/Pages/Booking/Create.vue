@@ -26,8 +26,8 @@ const formOptions = {
 
 type BookingForm = {
     booking: {
-        departure: Date;
-        return: Date;
+        departure: string;
+        return: string;
     };
     vehicle: {
         category: string;
