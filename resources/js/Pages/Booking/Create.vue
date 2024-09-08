@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Heading from "../../Shared/Heading.vue";
+
 import { useForm } from "@inertiajs/vue3";
 
 const formOptions = {
@@ -68,7 +70,8 @@ const submit = () => {
 </script>
 
 <template>
-    <div class="my-5">
+    <Heading title="New Booking"/>
+    <div>
         <form
             action=""
             class="w-11/12 max-w-2xl space-y-6 border py-5 px-10 rounded-lg"
