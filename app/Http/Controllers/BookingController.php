@@ -16,4 +16,8 @@ class BookingController extends Controller
                 'bookings' => $bookings
             ]);
         }
+
+    public function create() {
+        return Inertia::render('Booking/Create');
+    }
 }
