@@ -79,10 +79,10 @@ const submit = () => {
                 <div class="grid grid-cols-2 gap-5 w-full">
                     <div class="flex flex-col">
                         <label for="departure" class="text-light-grey"
-                            >Departure Date</label
-                        >
+                            >Departure
+                        </label>
                         <input
-                            type="date"
+                            type="datetime-local"
                             id="departure"
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.booking.departure"
@@ -92,10 +92,10 @@ const submit = () => {
 
                     <div class="flex flex-col">
                         <label for="return" class="text-light-grey"
-                            >Return Date</label
-                        >
+                            >Return
+                        </label>
                         <input
-                            type="date"
+                            type="datetime-local"
                             id="return"
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.booking.return"
