@@ -71,7 +71,7 @@ const submit = () => {
     <div class="my-5">
         <form
             action=""
-            class="w-11/12 max-w-2xl m-auto space-y-6 border py-5 px-10 rounded-lg"
+            class="w-11/12 max-w-2xl space-y-6 border py-5 px-10 rounded-lg"
             @submit.prevent="submit"
         >
             <fieldset class="space-y-3">
