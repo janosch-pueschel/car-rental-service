@@ -15,6 +15,9 @@ export default {
                 black: "#212226",
                 white: "#f3f4f6",
             },
+            gridTemplateColumns: {
+                "6-fit": "repeat(6, max-content)",
+            },
         },
     },
     plugins: [],
