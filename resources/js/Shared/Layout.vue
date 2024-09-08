@@ -4,11 +4,13 @@ import Sidebar from "./Sidebar.vue";
 </script>
 
 <template>
-    <Navbar />
-    <div class="flex bg-white">
-        <Sidebar />
-        <div class="w-full m-5">
-            <slot></slot>
+    <div class="flex-col bg-white">
+        <Navbar />
+        <div class="flex">
+            <Sidebar />
+            <div class="w-full relative left-64 m-5">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
