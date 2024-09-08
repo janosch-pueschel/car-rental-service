@@ -8,7 +8,12 @@ use Inertia\Inertia;
 
 class BookingController extends Controller
 {
-    public function index()
-    {
-    }
+    public function index(Booking $bookings)
+        {
+            $bookings = $bookings->with('driver', 'vehicleCategory', 'fuelType', 'transmission')->orderBy('departure', 'asc')->get();
+
+            return Inertia::render('Booking/Index', [
+                'bookings' => $bookings
+            ]);
+        }
 }
