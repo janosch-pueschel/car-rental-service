@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar.vue";
 <template>
     <div class="flex-col bg-white">
         <Navbar />
-        <div class="flex">
+        <div class="flex overflow-x-hidden">
             <Sidebar />
             <div class="w-full relative left-64 m-5">
                 <slot></slot>
