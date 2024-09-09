@@ -10,7 +10,6 @@ Route::get('/', function () {
 });
 
 Route::get('/booking', [BookingController::class, 'index']);
-Route::post('/booking', [BookingController::class, 'store']);
 Route::get('/booking/create', [BookingController::class, 'create']);
 
 Route::get('/drivers', function(){
