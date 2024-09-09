@@ -26,54 +26,41 @@ const formOptions = {
     },
 };
 
-type BookingForm = {
-    booking: {
-        departure: string;
-        return: string;
-    };
-    vehicle: {
-        category: string;
-        fuelType: string;
-        transmission: string;
-    };
-    driver: {
-        firstName: string;
-        lastName: string;
-        gender: string;
-        birthdate: string;
-        email: string;
-    };
-};
+interface BookingForm {
+    departure: string;
+    return: string;
+    category: string;
+    fuelType: string;
+    transmission: string;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    birthdate: string;
+    email: string;
+}
 
 const bookingForm = useForm<BookingForm>({
-    booking: {
-        departure: "",
-        return: "",
-    },
-    vehicle: {
-        category: "",
-        fuelType: "",
-        transmission: "",
-    },
-    driver: {
-        firstName: "",
-        lastName: "",
-        gender: "",
-        birthdate: "",
-        email: "",
-    },
+    departure: "",
+    return: "",
+    category: "",
+    fuelType: "",
+    transmission: "",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    birthdate: "",
+    email: "",
 });
 
 const submit = () => {
-    console.log(bookingForm);
+    bookingForm.post("/booking");
 };
 </script>
 
 <template>
-    <Heading title="New Booking"/>
+    <Heading title="New Booking" />
     <div>
         <form
-            action=""
             class="w-11/12 max-w-2xl space-y-6 border py-5 px-10 rounded-lg"
             @submit.prevent="submit"
         >
@@ -85,12 +72,15 @@ const submit = () => {
                             >Departure
                         </label>
                         <input
+                            name="departure"
                             type="datetime-local"
                             id="departure"
                             class="border rounded-full px-5 py-2 text-dark-grey"
-                            v-model="bookingForm.booking.departure"
-                            required
+                            v-model="bookingForm.departure"
                         />
+                        <p v-if="bookingForm.errors.departure">
+                            {{ bookingForm.errors.departure }}
+                        </p>
                     </div>
 
                     <div class="flex flex-col">
@@ -98,12 +88,15 @@ const submit = () => {
                             >Return
                         </label>
                         <input
+                            name="return"
                             type="datetime-local"
                             id="return"
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
-                            v-model="bookingForm.booking.return"
-                            required
+                            v-model="bookingForm.return"
                         />
+                        <p v-if="bookingForm.errors.return">
+                            {{ bookingForm.errors.return }}
+                        </p>
                     </div>
                 </div>
             </fieldset>
@@ -119,8 +112,7 @@ const submit = () => {
                             name="category"
                             id="category"
                             class="border rounded-full px-5 py-2 text-dark-grey"
-                            v-model="bookingForm.vehicle.category"
-                            required
+                            v-model="bookingForm.category"
                         >
                             <option
                                 v-for="vehicleCategory in formOptions.vehicle
@@ -130,17 +122,19 @@ const submit = () => {
                                 {{ vehicleCategory }}
                             </option>
                         </select>
+                        <p v-if="bookingForm.errors.category">
+                            {{ bookingForm.errors.category }}
+                        </p>
                     </div>
                     <div class="grid">
                         <label for="fuel_type" class="text-light-grey"
                             >Fuel Type</label
                         >
                         <select
-                            name="fuel_type"
-                            id="fuel_type"
+                            name="fuelType"
+                            id="fuelType"
                             class="border rounded-full px-5 py-2 text-dark-grey"
-                            v-model="bookingForm.vehicle.fuelType"
-                            required
+                            v-model="bookingForm.fuelType"
                         >
                             <option
                                 :value="fuelType"
@@ -149,33 +143,40 @@ const submit = () => {
                                 {{ fuelType }}
                             </option>
                         </select>
+                        <p v-if="bookingForm.errors.fuelType">
+                            {{ bookingForm.errors.fuelType }}
+                        </p>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-5 w-full">
                     <fieldset
                         v-if="
-                            bookingForm.vehicle.fuelType === 'Gasoline' ||
-                            bookingForm.vehicle.fuelType === 'Diesel'
+                            bookingForm.fuelType === 'Gasoline' ||
+                            bookingForm.fuelType === 'Diesel'
                         "
                         class="grid"
                     >
                         <legend class="text-light-grey">Transmission</legend>
-                        <div class="flex items-center">
-                            <label
-                                v-for="transmission in formOptions.vehicle
-                                    .transmission"
-                                :for="transmission"
-                                class="mr-5"
-                                ><input
-                                    type="radio"
-                                    :id="transmission"
-                                    name="transmission"
-                                    :value="transmission"
-                                    class="mr-1"
-                                    v-model="bookingForm.vehicle.transmission"
-                                    required
-                                />{{ transmission }}</label
-                            >
+                        <div class="flex flex-col items-center">
+                            <div class="flex">
+                                <label
+                                    v-for="transmission in formOptions.vehicle
+                                        .transmission"
+                                    :for="transmission"
+                                    class="mr-5"
+                                    ><input
+                                        type="radio"
+                                        :id="transmission"
+                                        name="transmission"
+                                        :value="transmission"
+                                        class="mr-1"
+                                        v-model="bookingForm.transmission"
+                                    />{{ transmission }}</label
+                                >
+                            </div>
+                            <p v-if="bookingForm.errors.transmission">
+                                {{ bookingForm.errors.transmission }}
+                            </p>
                         </div>
                     </fieldset>
                 </div>
@@ -189,27 +190,33 @@ const submit = () => {
                             >First Name</label
                         >
                         <input
+                            name="firstName"
                             type="text"
-                            id="first_name"
+                            id="firstName"
                             placeholder="John"
                             class="border rounded-full px-5 py-2 text-dark-grey"
-                            v-model="bookingForm.driver.firstName"
-                            required
+                            v-model="bookingForm.firstName"
                         />
+                        <p v-if="bookingForm.errors.firstName">
+                            {{ bookingForm.errors.firstName }}
+                        </p>
                     </div>
 
                     <div class="flex flex-col">
-                        <label for="last_name" class="text-light-grey"
+                        <label for="lastName" class="text-light-grey"
                             >Last Name</label
                         >
                         <input
+                            name="lastName"
                             type="text"
-                            id="last_name"
+                            id="lastName"
                             placeholder="Doe"
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
-                            v-model="bookingForm.driver.lastName"
-                            required
+                            v-model="bookingForm.lastName"
                         />
+                        <p v-if="bookingForm.errors.lastName">
+                            {{ bookingForm.errors.lastName }}
+                        </p>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-5 w-full">
@@ -218,15 +225,18 @@ const submit = () => {
                             >Gender</label
                         >
                         <select
+                            name="gender"
                             id="gender"
                             class="border rounded-full px-5 py-2 text-dark-grey"
-                            v-model="bookingForm.driver.gender"
-                            required
+                            v-model="bookingForm.gender"
                         >
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="diverse">Diverse</option>
                         </select>
+                        <p v-if="bookingForm.errors.gender">
+                            {{ bookingForm.errors.gender }}
+                        </p>
                     </div>
 
                     <div class="flex flex-col">
@@ -234,25 +244,31 @@ const submit = () => {
                             >Date of birth</label
                         >
                         <input
+                            name="birthdate"
                             type="date"
                             id="birthdate"
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
-                            v-model="bookingForm.driver.birthdate"
-                            required
+                            v-model="bookingForm.birthdate"
                         />
+                        <p v-if="bookingForm.errors.birthdate">
+                            {{ bookingForm.errors.birthdate }}
+                        </p>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-5">
                     <div class="flex flex-col">
                         <label for="email" class="text-light-grey">Email</label>
                         <input
+                            name="email"
                             type="email"
                             id="email"
                             placeholder="johndoe@example.com"
                             class="border rounded-full px-5 py-2 text-dark-grey"
-                            v-model="bookingForm.driver.email"
-                            required
+                            v-model="bookingForm.email"
                         />
+                        <p v-if="bookingForm.errors.email">
+                            {{ bookingForm.errors.email }}
+                        </p>
                     </div>
                 </div>
             </fieldset>
