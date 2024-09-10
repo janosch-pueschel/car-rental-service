@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Heading from "../../Shared/Heading.vue";
+import FormValidationError from "../../Shared/FormValidationError.vue";
 
 import { useForm } from "@inertiajs/vue3";
 
@@ -78,9 +79,11 @@ const submit = () => {
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.departure"
                         />
-                        <p v-if="bookingForm.errors.departure">
+                        <FormValidationError
+                            v-if="bookingForm.errors.departure"
+                        >
                             {{ bookingForm.errors.departure }}
-                        </p>
+                        </FormValidationError>
                     </div>
 
                     <div class="flex flex-col">
@@ -94,9 +97,9 @@ const submit = () => {
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.return"
                         />
-                        <p v-if="bookingForm.errors.return">
+                        <FormValidationError v-if="bookingForm.errors.return">
                             {{ bookingForm.errors.return }}
-                        </p>
+                        </FormValidationError>
                     </div>
                 </div>
             </fieldset>
@@ -122,9 +125,9 @@ const submit = () => {
                                 {{ vehicleCategory }}
                             </option>
                         </select>
-                        <p v-if="bookingForm.errors.category">
+                        <FormValidationError v-if="bookingForm.errors.category">
                             {{ bookingForm.errors.category }}
-                        </p>
+                        </FormValidationError>
                     </div>
                     <div class="grid">
                         <label for="fuel_type" class="text-light-grey"
@@ -143,9 +146,9 @@ const submit = () => {
                                 {{ fuelType }}
                             </option>
                         </select>
-                        <p v-if="bookingForm.errors.fuelType">
+                        <FormValidationError v-if="bookingForm.errors.fuelType">
                             {{ bookingForm.errors.fuelType }}
-                        </p>
+                        </FormValidationError>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-5 w-full">
@@ -174,9 +177,9 @@ const submit = () => {
                                     />{{ transmission }}</label
                                 >
                             </div>
-                            <p v-if="bookingForm.errors.transmission">
+                            <FormValidationError v-if="bookingForm.errors.transmission">
                                 {{ bookingForm.errors.transmission }}
-                            </p>
+                            </FormValidationError>
                         </div>
                     </fieldset>
                 </div>
@@ -197,9 +200,9 @@ const submit = () => {
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.firstName"
                         />
-                        <p v-if="bookingForm.errors.firstName">
+                        <FormValidationError v-if="bookingForm.errors.firstName">
                             {{ bookingForm.errors.firstName }}
-                        </p>
+                        </FormValidationError>
                     </div>
 
                     <div class="flex flex-col">
@@ -214,9 +217,9 @@ const submit = () => {
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.lastName"
                         />
-                        <p v-if="bookingForm.errors.lastName">
+                        <FormValidationError v-if="bookingForm.errors.lastName">
                             {{ bookingForm.errors.lastName }}
-                        </p>
+                        </FormValidationError>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-5 w-full">
@@ -234,9 +237,9 @@ const submit = () => {
                             <option value="female">Female</option>
                             <option value="diverse">Diverse</option>
                         </select>
-                        <p v-if="bookingForm.errors.gender">
+                        <FormValidationError v-if="bookingForm.errors.gender">
                             {{ bookingForm.errors.gender }}
-                        </p>
+                        </FormValidationError>
                     </div>
 
                     <div class="flex flex-col">
@@ -250,9 +253,9 @@ const submit = () => {
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.birthdate"
                         />
-                        <p v-if="bookingForm.errors.birthdate">
+                        <FormValidationError v-if="bookingForm.errors.birthdate">
                             {{ bookingForm.errors.birthdate }}
-                        </p>
+                        </FormValidationError>
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-5">
@@ -266,9 +269,9 @@ const submit = () => {
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.email"
                         />
-                        <p v-if="bookingForm.errors.email">
+                        <FormValidationError v-if="bookingForm.errors.email">
                             {{ bookingForm.errors.email }}
-                        </p>
+                        </FormValidationError>
                     </div>
                 </div>
             </fieldset>
