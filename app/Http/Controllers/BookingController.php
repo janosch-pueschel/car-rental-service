@@ -26,17 +26,37 @@ class BookingController extends Controller
     }
 
     public function store(Request $request) {
+        /* $messages = [
+            'required' => ':attribute is required.',
+            'after' => ':attribute must be in the future.'
+        ]; */
+
         $request->validate([
-            'departure' => 'required',
-            'return' => 'required',
-            'category' => 'required',
-            'fuelType' => 'required',
+            'departure' => ['required', 'date_format:Y-m-d\TH:i', 'after:now'],
+            'return' => ['required', 'date_format:Y-m-d\TH:i', 'after:departure'],
+            'category' => ['required', 'string', 'max:255'],
+            'fuelType' => ['required', 'string', 'max:255'],
             'transmission' => ['required_if:fuelType,gasoline,fuelType,diesel'],
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'gender' => 'required',
-            'birthdate' => 'required',
-            'email' => 'required',
+            'firstName' => ['required', 'string', 'max:255'],
+            'lastName' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'string', 'max:255'],
+            'birthdate' => ['required', 'date'],
+            'email' => ['required', 'email'],
+        ], [
+            'required' => ':attribute is required.',
+            'departure.after' => ':attribute date must be in the future.',
+            'return.after' => ':attribute date must after departure date.'
+        ], [
+            'departure' => 'Departure',
+            'return' => 'Return',
+            'category' => 'Vehicle category',
+            'fuelType' => 'Fuel type',
+            'transmission' => 'Transmission',
+            'firstName' => 'First name',
+            'lastName' => 'Last name',
+            'gender' => 'Gender',
+            'birthdate' => 'Birthdate',
+            'email' => 'Email',
         ]);
 
         $driverId = Driver::firstOrCreate([
@@ -63,36 +83,3 @@ class BookingController extends Controller
         return redirect('/booking');
     }
 }
-
-
- /* $requestData = json_decode($request->getContent(), true);
-
-        $driver = [
-            'first_name' => $requestData['firstName'],
-            'last_name' => $requestData['lastName'],
-            'gender' => $requestData['gender'],
-            'birthdate' => $requestData['birthdate'],
-            'email' => $requestData['email']
-        ];
-
-        $driverId = Driver::firstOrCreate([
-            'first_name' => $requestData['firstName'],
-            'last_name' => $requestData['lastName'],
-            'gender' => $requestData['gender'],
-            'birthdate' => $requestData['birthdate'],
-            'email' => $requestData['email']
-        ], [
-            'first_name' => $requestData['firstName'],
-            'last_name' => $requestData['lastName'],
-            'gender' => $requestData['gender'],
-            'birthdate' => $requestData['birthdate'],
-            'email' => $requestData['email']
-        ]); */ 
-
-        /* $driverId = Driver::firstOrCreate([
-            'first_name' => $request['firstName'],
-            'last_name' => $request['lastName'],
-            'gender' => $request['gender'],
-            'birthdate' => $request['birthdate'],
-            'email' => $request['email']
-        ])->id; */
