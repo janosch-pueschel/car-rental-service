@@ -9,7 +9,7 @@
     @vite('resources/js/app.js')
     @inertiaHead
   </head>
-  <body class="overscroll-none">
+  <body class="overscroll-none bg-white">
     @inertia
   </body>
 </html>
