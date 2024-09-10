@@ -78,6 +78,7 @@ const submit = () => {
                             id="departure"
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.departure"
+                            required
                         />
                         <FormValidationError
                             v-if="bookingForm.errors.departure"
@@ -96,6 +97,7 @@ const submit = () => {
                             id="return"
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.return"
+                            required
                         />
                         <FormValidationError v-if="bookingForm.errors.return">
                             {{ bookingForm.errors.return }}
@@ -116,6 +118,7 @@ const submit = () => {
                             id="category"
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.category"
+                            required
                         >
                             <option
                                 v-for="vehicleCategory in formOptions.vehicle
@@ -138,6 +141,7 @@ const submit = () => {
                             id="fuelType"
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.fuelType"
+                            required
                         >
                             <option
                                 :value="fuelType"
@@ -174,10 +178,13 @@ const submit = () => {
                                         :value="transmission"
                                         class="mr-1"
                                         v-model="bookingForm.transmission"
+                                        required
                                     />{{ transmission }}</label
                                 >
                             </div>
-                            <FormValidationError v-if="bookingForm.errors.transmission">
+                            <FormValidationError
+                                v-if="bookingForm.errors.transmission"
+                            >
                                 {{ bookingForm.errors.transmission }}
                             </FormValidationError>
                         </div>
@@ -199,8 +206,11 @@ const submit = () => {
                             placeholder="John"
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.firstName"
+                            required
                         />
-                        <FormValidationError v-if="bookingForm.errors.firstName">
+                        <FormValidationError
+                            v-if="bookingForm.errors.firstName"
+                        >
                             {{ bookingForm.errors.firstName }}
                         </FormValidationError>
                     </div>
@@ -216,6 +226,7 @@ const submit = () => {
                             placeholder="Doe"
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.lastName"
+                            required
                         />
                         <FormValidationError v-if="bookingForm.errors.lastName">
                             {{ bookingForm.errors.lastName }}
@@ -232,6 +243,7 @@ const submit = () => {
                             id="gender"
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.gender"
+                            required
                         >
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -252,8 +264,11 @@ const submit = () => {
                             id="birthdate"
                             class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.birthdate"
+                            required
                         />
-                        <FormValidationError v-if="bookingForm.errors.birthdate">
+                        <FormValidationError
+                            v-if="bookingForm.errors.birthdate"
+                        >
                             {{ bookingForm.errors.birthdate }}
                         </FormValidationError>
                     </div>
@@ -268,6 +283,7 @@ const submit = () => {
                             placeholder="johndoe@example.com"
                             class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.email"
+                            required
                         />
                         <FormValidationError v-if="bookingForm.errors.email">
                             {{ bookingForm.errors.email }}
