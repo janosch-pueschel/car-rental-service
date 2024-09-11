@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Button from "../../Shared/Button.vue";
-import Heading from "../../Shared/Heading.vue";
+import FormInput from "../../Shared/Form/FormInput.vue";
 import FormValidationError from "../../Shared/FormValidationError.vue";
+import Heading from "../../Shared/Heading.vue";
 
 import { useForm } from "@inertiajs/vue3";
 
@@ -73,11 +74,10 @@ const submit = () => {
                         <label for="departure" class="text-light-grey"
                             >Departure
                         </label>
-                        <input
+                        <FormInput
                             name="departure"
                             type="datetime-local"
                             id="departure"
-                            class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.departure"
                             required
                         />
@@ -92,11 +92,10 @@ const submit = () => {
                         <label for="return" class="text-light-grey"
                             >Return
                         </label>
-                        <input
+                        <FormInput
                             name="return"
                             type="datetime-local"
                             id="return"
-                            class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.return"
                             required
                         />
@@ -165,14 +164,14 @@ const submit = () => {
                         class="grid"
                     >
                         <legend class="text-light-grey">Transmission</legend>
-                        <div class="flex flex-col items-center">
-                            <div class="flex">
+                        <div class="flex flex-col">
+                            <div>
                                 <label
                                     v-for="transmission in formOptions.vehicle
                                         .transmission"
                                     :for="transmission"
                                     class="mr-5"
-                                    ><input
+                                    ><FormInput
                                         type="radio"
                                         :id="transmission"
                                         name="transmission"
@@ -200,12 +199,11 @@ const submit = () => {
                         <label for="first_name" class="text-light-grey"
                             >First Name</label
                         >
-                        <input
+                        <FormInput
                             name="firstName"
                             type="text"
                             id="firstName"
                             placeholder="John"
-                            class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.firstName"
                             required
                         />
@@ -220,12 +218,11 @@ const submit = () => {
                         <label for="lastName" class="text-light-grey"
                             >Last Name</label
                         >
-                        <input
+                        <FormInput
                             name="lastName"
                             type="text"
                             id="lastName"
                             placeholder="Doe"
-                            class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.lastName"
                             required
                         />
@@ -259,11 +256,10 @@ const submit = () => {
                         <label for="birthdate" class="text-light-grey"
                             >Date of birth</label
                         >
-                        <input
+                        <FormInput
                             name="birthdate"
                             type="date"
                             id="birthdate"
-                            class="border rounded-full px-5 py-2 text-dark-grey w-full"
                             v-model="bookingForm.birthdate"
                             required
                         />
@@ -277,12 +273,11 @@ const submit = () => {
                 <div class="grid grid-cols-2 gap-5">
                     <div class="flex flex-col">
                         <label for="email" class="text-light-grey">Email</label>
-                        <input
+                        <FormInput
                             name="email"
                             type="email"
                             id="email"
                             placeholder="johndoe@example.com"
-                            class="border rounded-full px-5 py-2 text-dark-grey"
                             v-model="bookingForm.email"
                             required
                         />
