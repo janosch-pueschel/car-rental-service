@@ -44,7 +44,8 @@ const getCategoryBadge = (category) => {
             <Button
                 title="Add"
                 icon="pi-plus"
-                type="link"
+                :link="true"
+                link-type="Link"
                 href="booking/create"
             />
         </div>
@@ -98,10 +99,11 @@ const getCategoryBadge = (category) => {
                 </p>
 
                 <Button
-                    type="link"
                     title="View Booking"
                     icon="pi-arrow-circle-right"
-                    href="/"
+                    :link="true"
+                    link-type="Link"
+                    :href="`/booking/show/${booking.id}`"
                 />
             </div>
         </div>
