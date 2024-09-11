@@ -8,7 +8,7 @@ import Sidebar from "./Sidebar.vue";
         <Navbar />
         <div class="flex overflow-x-hidden">
             <Sidebar />
-            <div class="w-full relative left-64 m-5">
+            <div class="w-full relative pl-64 m-5">
                 <slot></slot>
             </div>
         </div>
