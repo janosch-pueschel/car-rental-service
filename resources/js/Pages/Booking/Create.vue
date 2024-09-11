@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Button from "../../Shared/Button.vue";
 import Heading from "../../Shared/Heading.vue";
 import FormValidationError from "../../Shared/FormValidationError.vue";
 
@@ -291,16 +292,24 @@ const submit = () => {
                     </div>
                 </div>
             </fieldset>
-            <button
-                type="submit"
-                class="px-8 py-2 bg-green rounded-full text-white"
-                :class="{
-                    'bg-gray-400 hover:bg-gray-400': bookingForm.processing,
-                }"
-                :disabled="bookingForm.processing"
-            >
-                Submit
-            </button>
+            <div class="grid grid-cols-2 gap-5 pt-5">
+                <div class="flex space-x-5">
+                    <Button
+                        type="submit"
+                        title="Store Booking"
+                        :disabled="bookingForm.processing"
+                    >
+                        Submit
+                    </Button>
+                    <Button
+                        title="Cancel"
+                        :link="true"
+                        link-type="Link"
+                        styleType="danger"
+                        href="/booking"
+                    />
+                </div>
+            </div>
         </form>
     </div>
 </template>
