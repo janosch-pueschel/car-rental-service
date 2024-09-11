@@ -4,7 +4,7 @@ import SidebarLink from "./SidebarLink.vue";
 
 <template>
     <div
-        class="w-64 h-screen pt-28 pb-5 text-white bg-dark-grey font-work-sans flex flex-col justify-between shrink-0 fixed top-0"
+        class="w-64 h-screen pt-28 pb-5 text-white bg-dark-grey font-work-sans flex flex-col justify-between shrink-0 fixed top-0 z-10"
     >
         <div class="space-y-20">
             <div class="space-y-5 text-lg flex flex-col">
