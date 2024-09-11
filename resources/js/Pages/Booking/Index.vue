@@ -26,7 +26,7 @@ const getCategoryBadge = (category) => {
         case "Compact":
             return "bg-lime-200";
         case "Intermediate":
-            return "bg-yellow-200";
+            return "bg-red-200";
         case "Standard":
             return "bg-indigo-200";
         case "Fullsize":
