@@ -82,4 +82,20 @@ class BookingController extends Controller
 
         return redirect('/booking');
     }
+
+    public function show($id) {
+        $booking = Booking::find($id);
+        $driver = Driver::find($booking->driver_id);
+        $vehicleCategory = VehicleCategory::find($booking->vehicle_category_id);
+        $fuelType = FuelType::find($booking->fuel_type_id);
+        $transmission = Transmission::find($booking->transmission_id);
+
+        return Inertia::render('Booking/Show')->with([
+            'booking' => $booking,
+            'driver' => $driver,
+            'vehicleCategory' => $vehicleCategory,
+            'fuelType' => $fuelType,
+            'transmission' => $transmission
+        ]);
+    }
 }
