@@ -2,6 +2,8 @@
 import Button from "../../Shared/Button.vue";
 import Heading from "../../Shared/Heading.vue";
 
+import { router } from "@inertiajs/vue3";
+
 defineProps({
     booking: Object,
     driver: Object,
@@ -9,6 +11,10 @@ defineProps({
     fuelType: Object,
     transmission: Object,
 });
+
+const deleteBooking = (bookingId) => {
+    router.delete(`/booking/show/${bookingId}`, bookingId);
+};
 </script>
 
 <template>
@@ -24,4 +30,10 @@ defineProps({
         </p>
         <p>Price per Day: {{ booking?.price_per_day }}</p>
     </div>
+
+    <Button
+        @click="deleteBooking(booking?.id)"
+        title="Delete"
+        style-type="danger"
+    />
 </template>
