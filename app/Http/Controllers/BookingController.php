@@ -98,4 +98,9 @@ class BookingController extends Controller
             'transmission' => $transmission
         ]);
     }
+
+    public function destroy($bookingId) {
+        Booking::find($bookingId)->delete();
+        return redirect('/booking');
+    }
 }
