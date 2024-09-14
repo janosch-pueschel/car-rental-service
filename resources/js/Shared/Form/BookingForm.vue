@@ -4,6 +4,9 @@ import FormInput from "../../Shared/Form/FormInput.vue";
 import FormValidationError from "../../Shared/FormValidationError.vue";
 
 import { useForm } from "@inertiajs/vue3";
+import { watch } from "vue";
+
+const props = defineProps<{ booking?: BookingForm }>();
 
 const formOptions = {
     vehicle: {
@@ -53,6 +56,25 @@ const bookingForm = useForm<BookingForm>({
     birthdate: "",
     email: "",
 });
+
+watch(
+    () => props.booking,
+    (newBooking: BookingForm | undefined) => {
+        if (newBooking) {
+            bookingForm.departure = newBooking.departure || "";
+            bookingForm.return = newBooking.return || "";
+            bookingForm.category = newBooking.category || "";
+            bookingForm.fuelType = newBooking.fuelType || "";
+            bookingForm.transmission = newBooking.transmission || "";
+            bookingForm.firstName = newBooking.firstName || "";
+            bookingForm.lastName = newBooking.lastName || "";
+            bookingForm.gender = newBooking.gender || "";
+            bookingForm.birthdate = newBooking.birthdate || "";
+            bookingForm.email = newBooking.email || "";
+        }
+    },
+    { immediate: true }
+);
 
 const submit = () => {
     bookingForm.post("/booking");
