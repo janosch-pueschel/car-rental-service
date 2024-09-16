@@ -36,4 +36,11 @@ const deleteBooking = (bookingId) => {
         title="Delete"
         style-type="danger"
     />
+    <Button
+        title="Edit"
+        :link="true"
+        linkType="Link"
+        style-type="primary"
+        :href="`/booking/edit/${booking?.id}`"
+    />
 </template>

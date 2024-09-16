@@ -32,6 +32,7 @@ const formOptions = {
 };
 
 interface BookingForm {
+    id?: string;
     departure: string;
     return: string;
     category: string;
@@ -76,8 +77,15 @@ watch(
     { immediate: true }
 );
 
-const submit = () => {
+const storeBooking = () => {
     bookingForm.post("/booking");
+};
+
+const updateBooking = (id?: string): string => {
+    if (typeof id === "string") {
+        bookingForm.patch(`/booking/edit/${id}`);
+    }
+    return "";
 };
 </script>
 
@@ -85,7 +93,9 @@ const submit = () => {
     <div>
         <form
             class="w-11/12 max-w-2xl space-y-6 border py-5 px-10 rounded-lg"
-            @submit.prevent="submit"
+            @submit.prevent="
+                props.booking ? updateBooking(props.booking.id) : storeBooking
+            "
         >
             <fieldset class="space-y-3">
                 <legend class="text-xl font-semibold">Booking Details</legend>
@@ -208,7 +218,7 @@ const submit = () => {
                 </div>
             </fieldset>
             <hr />
-            <fieldset class="space-y-3">
+            <fieldset v-if="!props.booking" class="space-y-3">
                 <legend class="text-xl font-semibold">Driver Details</legend>
                 <div class="grid grid-cols-2 gap-5 w-full">
                     <div class="flex flex-col">

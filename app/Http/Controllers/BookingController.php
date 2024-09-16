@@ -26,11 +26,6 @@ class BookingController extends Controller
     }
 
     public function store(Request $request) {
-        /* $messages = [
-            'required' => ':attribute is required.',
-            'after' => ':attribute must be in the future.'
-        ]; */
-
         $request->validate([
             'departure' => ['required', 'date_format:Y-m-d\TH:i', 'after:now'],
             'return' => ['required', 'date_format:Y-m-d\TH:i', 'after:departure'],
@@ -101,6 +96,45 @@ class BookingController extends Controller
 
     public function destroy($bookingId) {
         Booking::find($bookingId)->delete();
+        return redirect('/booking');
+    }
+
+    public function update(Request $request, $bookingId) {
+  
+       $request['departure'] = date("Y-m-d H:i:s", strtotime($request["departure"]));
+       $request['return'] = date("Y-m-d H:i:s", strtotime($request["return"]));
+
+         $request->validate([
+            'departure' => ['required', 'date_format:Y-m-d H:i:s'],
+            'return' => ['required', 'date_format:Y-m-d H:i:s', 'after:departure'],
+            'category' => ['required', 'string', 'max:255'],
+            'fuelType' => ['required', 'string', 'max:255'],
+            'transmission' => ['required_if:fuelType,gasoline,fuelType,diesel'],
+        ], [
+            'required' => ':attribute is required.',
+            'return.after' => ':attribute date must after departure date.'
+        ], [
+            'departure' => 'Departure',
+            'return' => 'Return',
+            'category' => 'Vehicle category',
+            'fuelType' => 'Fuel type',
+            'transmission' => 'Transmission',
+        ]);
+
+        $booking = Booking::findOrFail($bookingId);
+        $vehicleCategoryId = VehicleCategory::firstWhere('name', $request['category'])->id;
+        $fuelTypeId = FuelType::firstWhere('name', $request['fuelType'])->id;
+        $transmissionId = Transmission::firstWhere('name', $request['transmission'])->id ?? Transmission::firstWhere('name', 'Automatic')->id;
+        
+        $booking->update([
+            'departure' => $request['departure'],
+            'return' => $request['return'],
+            'vehicle_category_id' => $vehicleCategoryId,
+            'fuel_type_id' => $fuelTypeId,
+            'transmission_id' => $transmissionId,
+            'price_per_day' => 10
+        ]);
+
         return redirect('/booking');
     }
 }
