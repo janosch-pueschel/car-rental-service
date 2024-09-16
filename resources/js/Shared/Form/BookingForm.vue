@@ -83,7 +83,7 @@ const storeBooking = () => {
 
 const updateBooking = (id?: string): string => {
     if (typeof id === "string") {
-        bookingForm.patch(`/bookings/${id}/edit`);
+        bookingForm.patch(`/bookings/${id}`);
     }
     return "";
 };
@@ -94,7 +94,7 @@ const updateBooking = (id?: string): string => {
         <form
             class="w-11/12 max-w-2xl space-y-6 border py-5 px-10 rounded-lg"
             @submit.prevent="
-                props.booking ? updateBooking(props.booking.id) : storeBooking
+                props.booking ? updateBooking(props.booking.id) : storeBooking()
             "
         >
             <fieldset class="space-y-3">
@@ -313,9 +313,7 @@ const updateBooking = (id?: string): string => {
                         type="submit"
                         title="Store Booking"
                         :disabled="bookingForm.processing"
-                    >
-                        Submit
-                    </Button>
+                    />
                     <Button
                         title="Cancel"
                         :link="true"
