@@ -29,7 +29,7 @@ class BookingController extends Controller
         $request['departure'] = date("Y-m-d H:i:s", strtotime($request["departure"]));
         $request['return'] = date("Y-m-d H:i:s", strtotime($request["return"]));
 
-        $request->validate([
+        $validatedData = $request->validate([
             'departure' => ['required', 'date_format:Y-m-d H:i:s', 'after:now'],
             'return' => ['required', 'date_format:Y-m-d H:i:s', 'after:departure'],
             'category' => ['required', 'string', 'max:255'],
@@ -58,16 +58,16 @@ class BookingController extends Controller
         ]);
 
         $driverId = Driver::firstOrCreate([
-            'first_name' => $request['firstName'],
-            'last_name' => $request['lastName'],
-            'gender' => $request['gender'],
-            'birthdate' => $request['birthdate'],
-            'email' => $request['email']
+            'first_name' => $validatedData['firstName'],
+            'last_name' => $validatedData['lastName'],
+            'gender' => $validatedData['gender'],
+            'birthdate' => $validatedData['birthdate'],
+            'email' => $validatedData['email']
         ])->id;
         
-        $vehicleCategoryId = VehicleCategory::firstWhere('name', $request['category'])->id;
-        $fuelTypeId = FuelType::firstWhere('name', $request['fuelType'])->id;
-        $transmissionId = Transmission::firstWhere('name', $request['transmission'])->id ?? Transmission::firstWhere('name', 'Automatic')->id;
+        $vehicleCategoryId = VehicleCategory::firstWhere('name', $validatedData['category'])->id;
+        $fuelTypeId = FuelType::firstWhere('name', $validatedData['fuelType'])->id;
+        $transmissionId = Transmission::firstWhere('name', $validatedData['transmission'])->id ?? Transmission::firstWhere('name', 'Automatic')->id;
 
         Booking::create([
             'departure' => $request['departure'],
