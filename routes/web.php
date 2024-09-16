@@ -22,29 +22,7 @@ Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings
 Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
 Route::patch('/bookings/{id}', [BookingController::class, 'update']);
 
-Route::get('/bookings/{id}/edit', function($id){
-    $booking = Booking::find($id);
-    $driver = Driver::find($booking->driver_id);
-    $vehicleCategory = VehicleCategory::find($booking->vehicle_category_id);
-    $fuelType = FuelType::find($booking->fuel_type_id);
-    $transmission = Transmission::find($booking->transmission_id);
-
-    return Inertia::render('Booking/Edit', [
-        'booking' => [
-            'id' => $id,
-            'departure' => $booking->departure,
-            'return' => $booking->return,
-            'category' => $vehicleCategory->name,
-            'fuelType' => $fuelType->name,
-            'transmission' => $transmission->name,
-            'firstName' => $driver->first_name,
-            'lastName' => $driver->last_name,
-            'gender' => $driver->gender,
-            'birthdate' => $driver->birthdate,
-            'email' => $driver->email,
-        ]
-    ]);
-});
+Route::get('/bookings/{id}/edit', [BookingController::class, 'edit']);
 
 Route::get('/drivers', function(){
     return Inertia::render('Drivers');

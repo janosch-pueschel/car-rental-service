@@ -99,6 +99,21 @@ class BookingController extends Controller
         return redirect('/bookings');
     }
 
+    public function edit($id) {
+        $booking = Booking::findOrFail($id);
+    
+        return Inertia::render('Booking/Edit', [
+            'booking' => [
+                'id' => $id,
+                'departure' => $booking->departure,
+                'return' => $booking->return,
+                'category' => $booking->vehicleCategory->name,
+                'fuelType' => $booking->fuelType->name,
+                'transmission' => $booking->transmission->name,
+            ]
+        ]);
+    }
+
     public function update(Request $request, $bookingId) {
        $request['departure'] = date("Y-m-d H:i:s", strtotime($request["departure"]));
        $request['return'] = date("Y-m-d H:i:s", strtotime($request["return"]));
