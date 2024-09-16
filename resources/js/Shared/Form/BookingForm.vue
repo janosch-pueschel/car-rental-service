@@ -78,12 +78,12 @@ watch(
 );
 
 const storeBooking = () => {
-    bookingForm.post("/booking");
+    bookingForm.post("/bookings");
 };
 
 const updateBooking = (id?: string): string => {
     if (typeof id === "string") {
-        bookingForm.patch(`/booking/edit/${id}`);
+        bookingForm.patch(`/bookings/${id}/edit`);
     }
     return "";
 };
@@ -321,7 +321,7 @@ const updateBooking = (id?: string): string => {
                         :link="true"
                         link-type="Link"
                         styleType="danger"
-                        href="/booking"
+                        href="/bookings"
                     />
                 </div>
             </div>

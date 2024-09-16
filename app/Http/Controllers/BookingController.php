@@ -75,7 +75,7 @@ class BookingController extends Controller
             'price_per_day' => 10
         ]);
 
-        return redirect('/booking');
+        return redirect('/bookings');
     }
 
     public function show($id) {
@@ -96,7 +96,7 @@ class BookingController extends Controller
 
     public function destroy($bookingId) {
         Booking::find($bookingId)->delete();
-        return redirect('/booking');
+        return redirect('/bookings');
     }
 
     public function update(Request $request, $bookingId) {
@@ -135,6 +135,6 @@ class BookingController extends Controller
             'price_per_day' => 10
         ]);
 
-        return redirect('/booking');
+        return redirect('/bookings/{id}');
     }
 }

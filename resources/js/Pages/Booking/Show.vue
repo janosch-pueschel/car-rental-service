@@ -13,7 +13,7 @@ defineProps({
 });
 
 const deleteBooking = (bookingId) => {
-    router.delete(`/booking/show/${bookingId}`, bookingId);
+    router.delete(`/bookings/${bookingId}`, bookingId);
 };
 </script>
 
@@ -41,6 +41,6 @@ const deleteBooking = (bookingId) => {
         :link="true"
         linkType="Link"
         style-type="primary"
-        :href="`/booking/edit/${booking?.id}`"
+        :href="`/bookings/${booking?.id}/edit`"
     />
 </template>

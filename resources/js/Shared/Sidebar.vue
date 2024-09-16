@@ -15,7 +15,7 @@ import SidebarLink from "./SidebarLink.vue";
                     >Home</SidebarLink
                 >
                 <SidebarLink
-                    href="/booking"
+                    href="/bookings"
                     :active="$page.component === 'Booking/Index'"
                     :icon="'pi-list'"
                     >Bookings</SidebarLink

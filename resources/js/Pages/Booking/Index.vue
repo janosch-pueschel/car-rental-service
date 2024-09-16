@@ -46,7 +46,7 @@ const getCategoryBadge = (category) => {
                 icon="pi-plus"
                 :link="true"
                 link-type="Link"
-                href="booking/create"
+                href="bookings/create"
             />
         </div>
 
@@ -103,7 +103,7 @@ const getCategoryBadge = (category) => {
                     icon="pi-arrow-circle-right"
                     :link="true"
                     link-type="Link"
-                    :href="`/booking/show/${booking.id}`"
+                    :href="`/bookings/${booking.id}`"
                 />
             </div>
         </div>

@@ -13,12 +13,16 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-Route::get('/booking', [BookingController::class, 'index']);
-Route::post('/booking', [BookingController::class, 'store']);
-Route::get('/booking/create', [BookingController::class, 'create']);
-Route::get('/booking/show/{id}', [BookingController::class, 'show']);
-Route::delete('/booking/show/{id}', [BookingController::class, 'destroy']);
-Route::get('/booking/edit/{id}', function($id){
+Route::get('/bookings', [BookingController::class, 'index']);
+Route::post('/bookings', [BookingController::class, 'store']);
+
+Route::get('/bookings/create', [BookingController::class, 'create']);
+
+Route::get('/bookings/{id}', [BookingController::class, 'show']);
+Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
+Route::patch('/bookings/{id}', [BookingController::class, 'update']);
+
+Route::get('/bookings/{id}/edit', function($id){
     $booking = Booking::find($id);
     $driver = Driver::find($booking->driver_id);
     $vehicleCategory = VehicleCategory::find($booking->vehicle_category_id);
@@ -41,7 +45,6 @@ Route::get('/booking/edit/{id}', function($id){
         ]
     ]);
 });
-Route::patch('/booking/edit/{id}', [BookingController::class, 'update']);
 
 Route::get('/drivers', function(){
     return Inertia::render('Drivers');
