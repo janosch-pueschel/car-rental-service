@@ -26,9 +26,12 @@ class BookingController extends Controller
     }
 
     public function store(Request $request) {
+        $request['departure'] = date("Y-m-d H:i:s", strtotime($request["departure"]));
+        $request['return'] = date("Y-m-d H:i:s", strtotime($request["return"]));
+
         $request->validate([
-            'departure' => ['required', 'date_format:Y-m-d\TH:i', 'after:now'],
-            'return' => ['required', 'date_format:Y-m-d\TH:i', 'after:departure'],
+            'departure' => ['required', 'date_format:Y-m-d H:i:s', 'after:now'],
+            'return' => ['required', 'date_format:Y-m-d H:i:s', 'after:departure'],
             'category' => ['required', 'string', 'max:255'],
             'fuelType' => ['required', 'string', 'max:255'],
             'transmission' => ['required_if:fuelType,gasoline,fuelType,diesel'],
@@ -61,6 +64,7 @@ class BookingController extends Controller
             'birthdate' => $request['birthdate'],
             'email' => $request['email']
         ])->id;
+        
         $vehicleCategoryId = VehicleCategory::firstWhere('name', $request['category'])->id;
         $fuelTypeId = FuelType::firstWhere('name', $request['fuelType'])->id;
         $transmissionId = Transmission::firstWhere('name', $request['transmission'])->id ?? Transmission::firstWhere('name', 'Automatic')->id;
@@ -80,31 +84,26 @@ class BookingController extends Controller
 
     public function show($id) {
         $booking = Booking::find($id);
-        $driver = Driver::find($booking->driver_id);
-        $vehicleCategory = VehicleCategory::find($booking->vehicle_category_id);
-        $fuelType = FuelType::find($booking->fuel_type_id);
-        $transmission = Transmission::find($booking->transmission_id);
 
         return Inertia::render('Booking/Show')->with([
             'booking' => $booking,
-            'driver' => $driver,
-            'vehicleCategory' => $vehicleCategory,
-            'fuelType' => $fuelType,
-            'transmission' => $transmission
+            'driver' => $booking->driver,
+            'vehicleCategory' => $booking->vehicleCategory,
+            'fuelType' => $booking->fuelType,
+            'transmission' => $booking->transmission
         ]);
     }
 
-    public function destroy($bookingId) {
-        Booking::find($bookingId)->delete();
+    public function destroy($id) {
+        Booking::find($id)->delete();
         return redirect('/bookings');
     }
 
     public function update(Request $request, $bookingId) {
-  
        $request['departure'] = date("Y-m-d H:i:s", strtotime($request["departure"]));
        $request['return'] = date("Y-m-d H:i:s", strtotime($request["return"]));
 
-         $request->validate([
+        $validatedData =  $request->validate([
             'departure' => ['required', 'date_format:Y-m-d H:i:s'],
             'return' => ['required', 'date_format:Y-m-d H:i:s', 'after:departure'],
             'category' => ['required', 'string', 'max:255'],
@@ -122,19 +121,20 @@ class BookingController extends Controller
         ]);
 
         $booking = Booking::findOrFail($bookingId);
-        $vehicleCategoryId = VehicleCategory::firstWhere('name', $request['category'])->id;
-        $fuelTypeId = FuelType::firstWhere('name', $request['fuelType'])->id;
-        $transmissionId = Transmission::firstWhere('name', $request['transmission'])->id ?? Transmission::firstWhere('name', 'Automatic')->id;
+
+        $vehicleCategoryId = VehicleCategory::firstWhere('name', $validatedData['category'])->id;
+        $fuelTypeId = FuelType::firstWhere('name', $validatedData['fuelType'])->id;
+        $transmissionId = Transmission::firstWhere('name', $validatedData['transmission'])->id ?? Transmission::firstWhere('name', 'Automatic')->id;
         
         $booking->update([
-            'departure' => $request['departure'],
-            'return' => $request['return'],
+            'departure' => $validatedData['departure'],
+            'return' => $validatedData['return'],
             'vehicle_category_id' => $vehicleCategoryId,
             'fuel_type_id' => $fuelTypeId,
             'transmission_id' => $transmissionId,
             'price_per_day' => 10
         ]);
 
-        return redirect('/bookings/{id}');
+        return redirect()->route('bookings.show', ['id' => $bookingId]);
     }
 }

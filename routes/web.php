@@ -18,7 +18,7 @@ Route::post('/bookings', [BookingController::class, 'store']);
 
 Route::get('/bookings/create', [BookingController::class, 'create']);
 
-Route::get('/bookings/{id}', [BookingController::class, 'show']);
+Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');
 Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
 Route::patch('/bookings/{id}', [BookingController::class, 'update']);
 
