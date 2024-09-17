@@ -14,7 +14,7 @@ class BookingController extends Controller
 {
     public function index(Booking $bookings)
         {
-            $bookings = $bookings->with('driver', 'vehicleCategory', 'fuelType', 'transmission')->orderBy('departure', 'asc')->get();
+            $bookings = $bookings->with('driver', 'vehicleCategory', 'fuelType', 'transmission')->orderBy('departure', 'asc')->simplePaginate(10);
 
             return Inertia::render('Booking/Index', [
                 'bookings' => $bookings
