@@ -16,7 +16,7 @@ export default {
                 white: "#f3f4f6",
             },
             gridTemplateColumns: {
-                "6-fit": "repeat(6, max-content)",
+                "bookings-index": "repeat(5, 1fr) max-content",
             },
         },
     },

@@ -63,10 +63,10 @@ const getCategoryBadge = (category) => {
             />
         </div>
 
-        <div class="w-fit">
-            <div class="border py-5 rounded-lg grid grid-cols-6-fit gap-6">
+        <div class="w-11/12 max-w-6xl">
+            <div class="border rounded-lg grid grid-cols-bookings-index gap-6 py-4">
                 <div
-                    class="inline-grid grid-cols-subgrid gap-16 px-5 text-light-grey border-b pb-2 mb-2 col-span-full"
+                    class="inline-grid grid-cols-subgrid gap-16 px-5 text-light-grey border-b pb-3 col-span-full"
                 >
                     <p>Renter</p>
                     <p>Departure</p>
@@ -79,7 +79,7 @@ const getCategoryBadge = (category) => {
                     :key="booking.id"
                     class="inline-grid grid-cols-subgrid gap-16 items-center col-span-full px-5"
                 >
-                    <p>
+                    <p class="truncate">
                         <span class="font-semibold">{{
                             booking.driver.last_name
                         }}</span
