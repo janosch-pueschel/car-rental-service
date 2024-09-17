@@ -64,7 +64,9 @@ const getCategoryBadge = (category) => {
         </div>
 
         <div class="w-11/12 max-w-6xl">
-            <div class="border rounded-lg grid grid-cols-bookings-index gap-6 py-4">
+            <div
+                class="border rounded-lg grid grid-cols-bookings-index grid-rows-11 gap-6 py-4"
+            >
                 <div
                     class="inline-grid grid-cols-subgrid gap-16 px-5 text-light-grey border-b pb-3 col-span-full"
                 >
@@ -75,6 +77,7 @@ const getCategoryBadge = (category) => {
                     <p>Details</p>
                 </div>
                 <div
+                    v-if="bookings.data.length"
                     v-for="booking in bookings.data"
                     :key="booking.id"
                     class="inline-grid grid-cols-subgrid gap-16 items-center col-span-full px-5"
@@ -121,6 +124,9 @@ const getCategoryBadge = (category) => {
                         link-type="Link"
                         :href="`/bookings/${booking.id}`"
                     />
+                </div>
+                <div v-else class="px-5 text-light-grey">
+                    No bookings found.
                 </div>
             </div>
             <div class="flex justify-center mt-3">
