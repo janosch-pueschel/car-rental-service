@@ -8,8 +8,8 @@ export default {
                 "work-sans": ["Work Sans", "sans-serif"],
             },
             colors: {
-                green: "#009900",
-                yellow: "#ffdd00",
+                "ec-green": "#009900",
+                "ec-yellow": "#ffdd00",
                 "light-grey": "#8c92ac",
                 "dark-grey": "#373A40",
                 black: "#212226",
@@ -17,6 +17,15 @@ export default {
             },
             gridTemplateColumns: {
                 "bookings-index": "repeat(5, 1fr) max-content",
+            },
+            animation: {
+                "fade-out": "fadeOut 4s ease-in-out",
+            },
+            keyframes: {
+                fadeOut: {
+                    "0%, 80%": { opacity: 1 },
+                    "100%": { opacity: 0 },
+                },
             },
         },
     },

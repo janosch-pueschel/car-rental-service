@@ -79,7 +79,10 @@ class BookingController extends Controller
             'price_per_day' => 10
         ]);
 
-        return redirect('/bookings');
+        return redirect('/bookings')->with([
+            'message' => 'Booking created.',
+            'message_type' => 'success'
+        ]);;
     }
 
     public function show($id) {
@@ -96,7 +99,10 @@ class BookingController extends Controller
 
     public function destroy($id) {
         Booking::find($id)->delete();
-        return redirect('/bookings');
+        return redirect('/bookings')->with([
+            'message' => 'Booking deleted.',
+            'message_type' => 'success'
+        ]);
     }
 
     public function edit($id) {
@@ -150,6 +156,9 @@ class BookingController extends Controller
             'price_per_day' => 10
         ]);
 
-        return redirect()->route('bookings.show', ['id' => $bookingId]);
+        return redirect()->route('bookings.show', ['id' => $bookingId])->with([
+            'message' => 'Booking updated.',
+            'message_type' => 'success'
+        ]);;
     }
 }

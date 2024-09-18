@@ -137,4 +137,10 @@ const getCategoryBadge = (category) => {
             </div>
         </Card>
     </div>
+    <FlashMessage
+        v-if="$page.props.flash.message"
+        :message-type="$page.props.flash.message_type"
+    >
+        {{ $page.props.flash.message }}
+    </FlashMessage>
 </template>

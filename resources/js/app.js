@@ -4,6 +4,7 @@ import Layout from "./Shared/Layout.vue";
 
 import { createApp, h } from "vue";
 import { createInertiaApp, Link } from "@inertiajs/vue3";
+import FlashMessage from "./Shared/FlashMessage.vue";
 
 createInertiaApp({
     resolve: (name) => {
@@ -18,6 +19,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .component("Link", Link)
+            .component("FlashMessage", FlashMessage)
             .mount(el);
     },
 });
