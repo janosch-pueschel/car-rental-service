@@ -28,4 +28,10 @@ class LoginController extends Controller
             'username' => 'The provided credentials do not match our records.'
         ]);
     }
+
+    public function destroy() {
+        Auth::logout();
+
+        return redirect('/login');
+    }
 }
