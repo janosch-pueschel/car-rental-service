@@ -1,5 +1,6 @@
 <script setup>
 import Button from "../../Shared/Button.vue";
+import Card from "../../Shared/Card.vue";
 import Heading from "../../Shared/Heading.vue";
 import SimplePagination from "../../Shared/SimplePagination.vue";
 
@@ -63,10 +64,8 @@ const getCategoryBadge = (category) => {
             />
         </div>
 
-        <div class="w-11/12 max-w-6xl">
-            <div
-                class="border rounded-lg grid grid-cols-bookings-index grid-rows-11 gap-6 py-4"
-            >
+        <Card class="w-11/12 max-w-6xl">
+            <div class="grid grid-cols-bookings-index grid-rows-11 gap-6">
                 <div
                     class="inline-grid grid-cols-subgrid gap-16 px-5 text-light-grey border-b pb-3 col-span-full"
                 >
@@ -136,6 +135,6 @@ const getCategoryBadge = (category) => {
                     :current-page="bookings.current_page"
                 />
             </div>
-        </div>
+        </Card>
     </div>
 </template>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Button from "../../Shared/Button.vue";
+import Card from "../../Shared/Card.vue";
 import Heading from "../../Shared/Heading.vue";
 
 import { router } from "@inertiajs/vue3";
@@ -20,7 +21,7 @@ const deleteBooking = (bookingId) => {
 <template>
     <Heading title="Booking Details"></Heading>
 
-    <div class="border py-5 rounded-lg">
+    <Card>
         <p>Name: {{ driver?.first_name }} {{ driver?.last_name }}</p>
         <p>Departure: {{ booking?.departure }}</p>
         <p>Return: {{ booking?.return }}</p>
@@ -29,7 +30,7 @@ const deleteBooking = (bookingId) => {
             {{ transmission?.name }}
         </p>
         <p>Price per Day: {{ booking?.price_per_day }}</p>
-    </div>
+    </Card>
 
     <Button
         @click="deleteBooking(booking?.id)"
