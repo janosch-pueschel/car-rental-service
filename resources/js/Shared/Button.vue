@@ -14,9 +14,9 @@ defineProps<{
         :is="link ? linkType : 'button'"
         class="py-2 px-3 rounded w-fit h-fit font-medium transition-colors border"
         :class="{
-            ' border-green text-green hover:bg-green hover:text-white':
-                !disabled,
-            ' border-dark-grey text-dark-grey': disabled,
+            'border-ec-green text-ec-green hover:bg-ec-green hover:text-white':
+                styleType === 'success',
+            'border-dark-grey text-dark-grey': disabled,
             'border-red-500 text-red-500 hover:bg-red-500 hover:text-white':
                 styleType === 'danger',
         }"

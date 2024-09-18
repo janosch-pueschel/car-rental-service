@@ -47,8 +47,6 @@ const getCategoryBadge = (category) => {
             return "bg-amber-200";
     }
 };
-
-/* console.log(bookings); */
 </script>
 
 <template>
@@ -60,6 +58,7 @@ const getCategoryBadge = (category) => {
                 icon="pi-plus"
                 :link="true"
                 link-type="Link"
+                style-type="success"
                 href="bookings/create"
             />
         </div>
@@ -120,6 +119,7 @@ const getCategoryBadge = (category) => {
                         title="View Booking"
                         icon="pi-arrow-circle-right"
                         :link="true"
+                        style-type="success"
                         link-type="Link"
                         :href="`/bookings/${booking.id}`"
                     />

@@ -337,6 +337,7 @@ const updateBooking = (id?: string): string => {
                         <Button
                             type="submit"
                             title="Store Booking"
+                            style-type="success"
                             :disabled="bookingForm.processing"
                         />
                         <Button
