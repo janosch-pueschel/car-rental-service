@@ -10,26 +10,29 @@ use App\Models\VehicleCategory;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-});
-
-Route::get('/bookings', [BookingController::class, 'index']);
-Route::post('/bookings', [BookingController::class, 'store']);
-
-Route::get('/bookings/create', [BookingController::class, 'create']);
-
-Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');
-Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
-Route::patch('/bookings/{id}', [BookingController::class, 'update']);
-
-Route::get('/bookings/{id}/edit', [BookingController::class, 'edit']);
-
-Route::get('/drivers', function(){
-    return Inertia::render('Drivers');
-});
-
-Route::get('/login', [LoginController::class, 'create']);
+Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
-Route::post('/logout', [LoginController::class, 'destroy']);
+Route::middleware('auth')->group(function() {
+    Route::get('/', function () {
+        return Inertia::render('Home');
+    });
+    
+    Route::get('/bookings', [BookingController::class, 'index']);
+    Route::post('/bookings', [BookingController::class, 'store']);
+    
+    Route::get('/bookings/create', [BookingController::class, 'create']);
+    
+    Route::get('/bookings/{id}', [BookingController::class, 'show'])->name('bookings.show');
+    Route::delete('/bookings/{id}', [BookingController::class, 'destroy']);
+    Route::patch('/bookings/{id}', [BookingController::class, 'update']);
+    
+    Route::get('/bookings/{id}/edit', [BookingController::class, 'edit']);
+    
+    Route::get('/drivers', function(){
+        return Inertia::render('Drivers');
+    });
+    
+    Route::post('/logout', [LoginController::class, 'destroy']);
+});
+
