@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\LoginController;
 use App\Models\Booking;
 use App\Models\Driver;
 use App\Models\FuelType;
@@ -27,3 +28,6 @@ Route::get('/bookings/{id}/edit', [BookingController::class, 'edit']);
 Route::get('/drivers', function(){
     return Inertia::render('Drivers');
 });
+
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
