@@ -29,5 +29,5 @@ Route::get('/drivers', function(){
     return Inertia::render('Drivers');
 });
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/login', [LoginController::class, 'create']);
+Route::post('/login', [LoginController::class, 'store']);

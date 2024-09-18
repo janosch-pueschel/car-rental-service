@@ -9,11 +9,11 @@ use Inertia\Inertia;
 
 class LoginController extends Controller
 {
-    public function index() {
+    public function create() {
         return Inertia::render('Auth/Login');
     }
 
-    public function authenticate(Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse {
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],
