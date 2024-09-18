@@ -31,7 +31,8 @@ import SidebarLink from "./SidebarLink.vue";
 
         <Link
             href="/logout"
-            method="POST"
+            method="post"
+            as="button"
             class="flex items-center mx-3 hover:font-semibold"
             ><i class="pi pi-sign-out mr-2"></i>Logout</Link
         >
