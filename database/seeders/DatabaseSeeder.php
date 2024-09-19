@@ -38,10 +38,40 @@ class DatabaseSeeder extends Seeder
                 'user_role_id' => 1]);
         }
 
+        if(!VehicleCategory::exists()) {
+            $vehicleCategories = [
+                ['name' => 'Mini', 'price_per_day' => 20],
+                ['name' => 'Economy', 'price_per_day' => 25],
+                ['name' => 'Compact', 'price_per_day' => 30],
+                ['name' => 'Intermediate', 'price_per_day' => 35], 
+                ['name' => 'Standard', 'price_per_day' => 40],
+                ['name' => 'Fullsize', 'price_per_day' => 45],
+                ['name' => 'Premium', 'price_per_day' => 50],
+            ];
+
+            FacadesDB::table('vehicle_categories')->insert($vehicleCategories);
+        }
+
+        if(!FuelType::exists()) {
+            $fuelTypes = [
+                ['name' => 'Gasoline', 'price_per_day' => 0],
+                ['name' => 'Diesel', 'price_per_day' => 10],
+                ['name' => 'Electricity', 'price_per_day' => 15],
+            ];
+
+            FacadesDB::table('fuel_types')->insert($fuelTypes);
+        }
+
+        if(!Transmission::exists()) {
+            $transmissions = [
+                ['name' => 'Manual', 'price_per_day' => 0],
+                ['name' => 'Automatic', 'price_per_day' => 5],
+            ];
+
+            FacadesDB::table('transmissions')->insert($transmissions);
+        }
+
         Driver::factory(40)->create();
-        VehicleCategory::factory(7)->create();
-        FuelType::factory(3)->create();
-        Transmission::factory(2)->create();
         Booking::factory()->count(50)->create();
     }
 }
