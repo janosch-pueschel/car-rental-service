@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Button from "../../Shared/Button.vue";
 import Card from "../../Shared/Card.vue";
+import PrevPageLink from "../../Shared/PrevPageLink.vue";
 
 import { router } from "@inertiajs/vue3";
 
@@ -78,20 +79,23 @@ const transmissionShort = (string) => {
                     <p class="text-lg">{{ booking?.price_total }} Euro</p>
                 </div>
             </div>
-            <div class="col-span-2 flex justify-end space-x-5 mt-5">
-                <Button
-                    @click="deleteBooking(booking?.id)"
-                    title="Delete"
-                    style-type="danger"
-                    icon="pi-trash"
-                />
-                <Button
-                    title="Edit"
-                    :link="true"
-                    linkType="Link"
-                    :href="`/bookings/${booking?.id}/edit`"
-                    icon="pi-pencil"
-                />
+            <div class="col-span-2 flex justify-between mt-5">
+                <PrevPageLink />
+                <div class="space-x-5">
+                    <Button
+                        @click="deleteBooking(booking?.id)"
+                        title="Delete"
+                        style-type="danger"
+                        icon="pi-trash"
+                    />
+                    <Button
+                        title="Edit"
+                        :link="true"
+                        linkType="Link"
+                        :href="`/bookings/${booking?.id}/edit`"
+                        icon="pi-pencil"
+                    />
+                </div>
             </div>
         </div>
     </Card>
