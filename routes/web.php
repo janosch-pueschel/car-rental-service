@@ -28,10 +28,6 @@ Route::middleware('auth')->group(function() {
     
     Route::get('/bookings/{id}/edit', [BookingController::class, 'edit']);
     
-    Route::get('/drivers', function(){
-        return Inertia::render('Drivers');
-    });
-    
     Route::post('/logout', [LoginController::class, 'destroy']);
 });
 

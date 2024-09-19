@@ -20,12 +20,6 @@ import SidebarLink from "./SidebarLink.vue";
                     :icon="'pi-list'"
                     >Bookings</SidebarLink
                 >
-                <SidebarLink
-                    href="/drivers"
-                    :active="$page.component === 'Drivers'"
-                    :icon="'pi-user'"
-                    >Drivers</SidebarLink
-                >
             </div>
         </div>
 
