@@ -122,7 +122,10 @@ const getCategoryBadge = (category) => {
                         :href="`/bookings/${booking.id}`"
                     />
                 </div>
-                <div v-else class="px-5 text-light-grey">
+                <div
+                    v-else
+                    class="px-5 text-light-grey col-span-full text-center"
+                >
                     No bookings found.
                 </div>
             </div>
