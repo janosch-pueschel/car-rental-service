@@ -7,6 +7,7 @@ use App\Models\Driver;
 use App\Models\FuelType;
 use App\Models\Transmission;
 use App\Models\VehicleCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -65,18 +66,25 @@ class BookingController extends Controller
             'email' => $validatedData['email']
         ])->id;
         
-        $vehicleCategoryId = VehicleCategory::firstWhere('name', $validatedData['category'])->id;
-        $fuelTypeId = FuelType::firstWhere('name', $validatedData['fuelType'])->id;
-        $transmissionId = Transmission::firstWhere('name', $validatedData['transmission'])->id ?? Transmission::firstWhere('name', 'Automatic')->id;
+        $vehicleCategory = VehicleCategory::firstWhere('name', $validatedData['category']);
+        $fuelType = FuelType::firstWhere('name', $validatedData['fuelType']);
+        $transmission = Transmission::firstWhere('name', $validatedData['transmission']) ?? Transmission::firstWhere('name', 'Automatic');
+
+        $pricePerDay = $vehicleCategory->price_per_day + $fuelType->price_per_day + $transmission->price_per_day;
+        $total_days = ceil(Carbon::parse($validatedData['departure'])->diffInDays(Carbon::parse($validatedData['return'])));
+        $price_total = round($total_days * $pricePerDay, 2);
+    
 
         Booking::create([
             'departure' => $request['departure'],
             'return' => $request['return'],
+            'total_days' => $total_days,
             'driver_id' => $driverId,
-            'vehicle_category_id' => $vehicleCategoryId,
-            'fuel_type_id' => $fuelTypeId,
-            'transmission_id' => $transmissionId,
-            'price_per_day' => 10
+            'vehicle_category_id' => $vehicleCategory->id,
+            'fuel_type_id' => $fuelType->id,
+            'transmission_id' => $transmission->id,
+            'price_per_day' => $pricePerDay,
+            'price_total' => $price_total
         ]);
 
         return redirect('/bookings')->with([
