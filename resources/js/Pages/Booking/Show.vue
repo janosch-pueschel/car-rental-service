@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Button from "../../Shared/Button.vue";
 import Card from "../../Shared/Card.vue";
-import Heading from "../../Shared/Heading.vue";
 
 import { router } from "@inertiajs/vue3";
 

@@ -8,7 +8,6 @@ export default {
 import Button from "../../Shared/Button.vue";
 import Card from "../../Shared/Card.vue";
 import FormInput from "../../Shared/Form/FormInput.vue";
-import Heading from "../../Shared/Heading.vue";
 
 import { useForm } from "@inertiajs/vue3";
 

@@ -1,7 +1,6 @@
 <script setup>
 import Button from "../../Shared/Button.vue";
 import Card from "../../Shared/Card.vue";
-import Heading from "../../Shared/Heading.vue";
 import SimplePagination from "../../Shared/SimplePagination.vue";
 
 defineProps({
