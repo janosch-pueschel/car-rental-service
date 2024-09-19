@@ -5,6 +5,7 @@ import Layout from "./Shared/Layout.vue";
 import { createApp, h } from "vue";
 import { createInertiaApp, Link } from "@inertiajs/vue3";
 import FlashMessage from "./Shared/FlashMessage.vue";
+import Heading from "./Shared/Heading.vue";
 
 createInertiaApp({
     resolve: (name) => {
@@ -20,6 +21,7 @@ createInertiaApp({
             .use(plugin)
             .component("Link", Link)
             .component("FlashMessage", FlashMessage)
+            .component("Heading", Heading)
             .mount(el);
     },
 });
