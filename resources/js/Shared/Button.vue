@@ -12,7 +12,7 @@ defineProps<{
 <template>
     <component
         :is="link ? linkType : 'button'"
-        class="inline-block py-2 px-3 rounded w-fit h-fit font-medium transition-colors border"
+        class="inline-block py-2 px-3 rounded w-fit min-w-24 h-fit font-medium transition-colors border text-center"
         :class="{
             'border-dark-grey text-dark-grey hover:bg-dark-grey hover:text-white':
                 !styleType,
