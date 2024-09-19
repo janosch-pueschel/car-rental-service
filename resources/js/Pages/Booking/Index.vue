@@ -1,7 +1,7 @@
 <script setup>
 import Button from "../../Shared/Button.vue";
 import Card from "../../Shared/Card.vue";
-import SimplePagination from "../../Shared/SimplePagination.vue";
+import SimplePagination from "../../Shared/Pagination/SimplePagination.vue";
 
 defineProps({
     bookings: {

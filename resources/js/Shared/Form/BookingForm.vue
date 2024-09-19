@@ -2,7 +2,7 @@
 import Button from "../../Shared/Button.vue";
 import Card from "../../Shared/Card.vue";
 import FormInput from "../../Shared/Form/FormInput.vue";
-import FormValidationError from "../../Shared/FormValidationError.vue";
+import FormValidationError from "../../Shared/Form/FormValidationError.vue";
 
 import { useForm } from "@inertiajs/vue3";
 import { watch } from "vue";

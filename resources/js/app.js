@@ -1,6 +1,6 @@
 import "../css/app.css";
 import "primeicons/primeicons.css";
-import Layout from "./Shared/Layout.vue";
+import Layout from "./Shared/Layout/Layout.vue";
 
 import { createApp, h } from "vue";
 import { createInertiaApp, Link } from "@inertiajs/vue3";
