@@ -16,7 +16,7 @@ export default {
                 white: "#f3f4f6",
             },
             gridTemplateColumns: {
-                "bookings-index": "repeat(5, 1fr) max-content",
+                bookings: "repeat(5, 130px) max-content",
             },
             animation: {
                 "fade-out": "fadeOut 4s ease-in-out",

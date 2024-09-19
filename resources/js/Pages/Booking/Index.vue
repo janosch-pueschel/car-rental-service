@@ -62,10 +62,10 @@ const getCategoryBadge = (category) => {
             />
         </div>
 
-        <Card class="w-11/12 max-w-6xl">
-            <div class="grid grid-cols-bookings-index grid-rows-11 gap-6">
+        <Card class="w-fit">
+            <div class="grid grid-cols-bookings grid-rows-11 gap-x-14 gap-y-5">
                 <div
-                    class="inline-grid grid-cols-subgrid gap-16 px-5 text-light-grey border-b pb-3 col-span-full"
+                    class="inline-grid grid-cols-subgrid px-5 text-light-grey border-b pb-3 col-span-full"
                 >
                     <p>Renter</p>
                     <p>Departure</p>
@@ -77,7 +77,7 @@ const getCategoryBadge = (category) => {
                     v-if="bookings.data.length"
                     v-for="booking in bookings.data"
                     :key="booking.id"
-                    class="inline-grid grid-cols-subgrid gap-16 items-center col-span-full px-5"
+                    class="inline-grid grid-cols-subgrid items-center col-span-full px-5"
                 >
                     <p class="truncate">
                         <span class="font-semibold">{{
