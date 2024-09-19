@@ -15,34 +15,87 @@ defineProps({
 const deleteBooking = (bookingId) => {
     router.delete(`/bookings/${bookingId}`, bookingId);
 };
+
+const formatDateTime = (date) => {
+    date = new Date(date);
+
+    return date.toLocaleString("de-DE", {
+        dateStyle: "short",
+        timeStyle: "short",
+    });
+};
+
+const transmissionShort = (string) => {
+    return string.substring(0, 1);
+};
 </script>
 
 <template>
     <Heading title="Booking Details"></Heading>
 
-    <Card>
-        <p>Name: {{ driver?.first_name }} {{ driver?.last_name }}</p>
-        <p>Departure: {{ booking?.departure }}</p>
-        <p>Return: {{ booking?.return }}</p>
-        <p>
-            Vehicle Details: {{ vehicleCategory?.name }}, {{ fuelType?.name }},
-            {{ transmission?.name }}
-        </p>
-        <p>Price per Day: {{ booking?.price_per_day }}</p>
+    <Card class="w-fit">
+        <div class="grid grid-cols-2 gap-y-4 gap-x-12">
+            <div class="col-span-2 grid grid-cols-subgrid border-b py-2">
+                <div>
+                    <p class="text-light-grey">Departure</p>
+                    <p class="text-lg">
+                        {{ formatDateTime(booking?.departure) }}
+                    </p>
+                </div>
+                <div>
+                    <p class="text-light-grey">Return</p>
+                    <p class="text-lg">{{ formatDateTime(booking?.return) }}</p>
+                </div>
+            </div>
+
+            <div class="col-span-2 grid grid-cols-subgrid border-b py-2">
+                <div>
+                    <p class="text-light-grey">Vehicle Category</p>
+                    <p class="text-lg">
+                        {{ vehicleCategory?.name }}
+                    </p>
+                </div>
+                <div>
+                    <p class="text-light-grey">Features</p>
+                    <p class="text-lg">
+                        {{ fuelType?.name }}
+                        <span v-if="fuelType?.name !== 'Electricity'">
+                            ({{ transmissionShort(transmission?.name) }})
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-span-2 grid grid-cols-subgrid py-2 border-b">
+                <div>
+                    <p class="text-light-grey">Renter</p>
+                    <p class="text-lg">
+                        {{ driver?.first_name }} {{ driver?.last_name }}
+                    </p>
+                </div>
+                <div>
+                    <p class="text-light-grey">Total Price</p>
+                    <p class="text-lg">{{ booking?.price_total }} Euro</p>
+                </div>
+            </div>
+            <div class="col-span-2 flex justify-end space-x-5 mt-5">
+                <Button
+                    @click="deleteBooking(booking?.id)"
+                    title="Delete"
+                    style-type="danger"
+                    icon="pi-trash"
+                />
+                <Button
+                    title="Edit"
+                    :link="true"
+                    linkType="Link"
+                    :href="`/bookings/${booking?.id}/edit`"
+                    icon="pi-pencil"
+                />
+            </div>
+        </div>
     </Card>
 
-    <Button
-        @click="deleteBooking(booking?.id)"
-        title="Delete"
-        style-type="danger"
-    />
-    <Button
-        title="Edit"
-        :link="true"
-        linkType="Link"
-        style-type="success"
-        :href="`/bookings/${booking?.id}/edit`"
-    />
     <FlashMessage
         v-if="$page.props.flash.message"
         :message-type="$page.props.flash.message_type"
