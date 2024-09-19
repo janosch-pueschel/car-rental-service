@@ -19,12 +19,13 @@ return new class extends Migration
             $table->id();
             $table->dateTime('departure');
             $table->dateTime('return');
+            $table->smallInteger('total_days');
             $table->foreignIdFor(Driver::class)->constrained();
             $table->foreignIdFor(VehicleCategory::class)->constrained();
             $table->foreignIdFor(FuelType::class)->constrained();
             $table->foreignIdFor(Transmission::class)->constrained();
             $table->smallInteger('price_per_day');
-            
+            $table->smallInteger('price_total');
         });
     }
 

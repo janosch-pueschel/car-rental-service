@@ -29,11 +29,13 @@ class BookingFactory extends Factory
         return [
             'departure' => fake()->dateTimeBetween('+0 days', '+1 years'),
             'return' => fake()->dateTimeBetween('+0 days', '+1 years'),
+            'total_days' => 5,
             'driver_id' => Driver::inRandomOrder() ->first()?->id,
             'vehicle_category_id' => VehicleCategory::inRandomOrder() ->first()?->id,
             'fuel_type_id' => $fuelType->id,
             'transmission_id' => $transmissionId,
-            'price_per_day' => 10
+            'price_per_day' => 30,
+            'price_total' => 100
         ];
     }
 }
