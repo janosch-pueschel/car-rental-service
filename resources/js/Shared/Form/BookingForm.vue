@@ -333,19 +333,19 @@ const updateBooking = (id?: string): string => {
                     </div>
                 </fieldset>
                 <div class="grid grid-cols-2 gap-5 pt-5">
-                    <div class="flex space-x-5">
-                        <Button
-                            type="submit"
-                            title="Store Booking"
-                            style-type="success"
-                            :disabled="bookingForm.processing"
-                        />
+                    <div class="flex justify-end space-x-5 col-start-2">
                         <Button
                             title="Cancel"
                             :link="true"
                             link-type="Link"
                             styleType="danger"
                             href="/bookings"
+                        />
+                        <Button
+                            type="submit"
+                            title="Store Booking"
+                            style-type="success"
+                            :disabled="bookingForm.processing"
                         />
                     </div>
                 </div>

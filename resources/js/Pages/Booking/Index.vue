@@ -119,7 +119,6 @@ const getCategoryBadge = (category) => {
                         title="View Booking"
                         icon="pi-arrow-circle-right"
                         :link="true"
-                        style-type="success"
                         link-type="Link"
                         :href="`/bookings/${booking.id}`"
                     />
