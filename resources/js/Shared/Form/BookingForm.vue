@@ -88,6 +88,10 @@ const updateBooking = (id?: string): string => {
     }
     return "";
 };
+
+const goBack = () => {
+    window.history.back();
+};
 </script>
 
 <template>
@@ -336,10 +340,8 @@ const updateBooking = (id?: string): string => {
                     <div class="flex justify-end space-x-5 col-start-2">
                         <Button
                             title="Cancel"
-                            :link="true"
-                            link-type="Link"
                             styleType="danger"
-                            href="/bookings"
+                            @click="goBack"
                         />
                         <Button
                             type="submit"
