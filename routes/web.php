@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Models\Booking;
 use App\Models\Driver;
@@ -14,9 +15,7 @@ Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
 Route::middleware('auth')->group(function() {
-    Route::get('/', function () {
-        return Inertia::render('Home');
-    });
+    Route::get('/', [HomeController::class, 'index']);
     
     Route::get('/bookings', [BookingController::class, 'index']);
     Route::post('/bookings', [BookingController::class, 'store']);
