@@ -164,17 +164,23 @@ class BookingController extends Controller
 
         $booking = Booking::findOrFail($bookingId);
 
-        $vehicleCategoryId = VehicleCategory::firstWhere('name', $validatedData['category'])->id;
-        $fuelTypeId = FuelType::firstWhere('name', $validatedData['fuelType'])->id;
-        $transmissionId = Transmission::firstWhere('name', $validatedData['transmission'])->id ?? Transmission::firstWhere('name', 'Automatic')->id;
-        
+        $vehicleCategory = VehicleCategory::firstWhere('name', $validatedData['category']);
+        $fuelType = FuelType::firstWhere('name', $validatedData['fuelType']);
+        $transmission = Transmission::firstWhere('name', $validatedData['transmission']) ?? Transmission::firstWhere('name', 'Automatic');
+
+        $pricePerDay = $vehicleCategory->price_per_day + $fuelType->price_per_day + $transmission->price_per_day;
+        $total_days = ceil(Carbon::parse($validatedData['departure'])->diffInDays(Carbon::parse($validatedData['return'])));
+        $price_total = round($total_days * $pricePerDay, 2);
+
         $booking->update([
             'departure' => $validatedData['departure'],
             'return' => $validatedData['return'],
-            'vehicle_category_id' => $vehicleCategoryId,
-            'fuel_type_id' => $fuelTypeId,
-            'transmission_id' => $transmissionId,
-            'price_per_day' => 10
+            'total_days' => $total_days,
+            'vehicle_category_id' => $vehicleCategory->id,
+            'fuel_type_id' => $fuelType->id,
+            'transmission_id' => $transmission->id,
+            'price_per_day' => $pricePerDay,
+            'price_total' => $price_total
         ]);
 
         return redirect()->route('bookings.show', ['id' => $bookingId])->with([
