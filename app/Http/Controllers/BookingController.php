@@ -13,14 +13,27 @@ use Inertia\Inertia;
 
 class BookingController extends Controller
 {
-    public function index(Booking $bookings)
-        {
-            $bookings = $bookings->with('driver', 'vehicleCategory', 'fuelType', 'transmission')->orderBy('departure', 'asc')->simplePaginate(10);
+    public function index(Request $request, Booking $booking) {
+        $search = $request['search'];
+
+        $bookings = $booking::query()
+                ->with('driver', 'vehicleCategory', 'fuelType', 'transmission')->orderBy('departure', 'asc')
+                ->when($search, function ($query, $search) {
+                    $query->whereHas('driver', function ($query) use ($search) {
+                        $query->where('last_name', 'like', "%{$search}%")
+                              ->orWhere('first_name', 'like', "%{$search}%");
+                    });
+                })
+                ->simplePaginate(10)
+                ->withQueryString();
+
 
             return Inertia::render('Booking/Index', [
-                'bookings' => $bookings
+                'bookings' => $bookings,
+                'searchFilter' => $request->query('search')
             ]);
-        }
+        
+    }
 
     public function create() {
         return Inertia::render('Booking/Create');

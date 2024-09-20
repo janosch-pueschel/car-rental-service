@@ -1,19 +1,21 @@
-<script setup>
+<script setup lang="ts">
 import Button from "../../Shared/Button.vue";
 import Card from "../../Shared/Card.vue";
+import SearchText from "../../Shared/Search/SearchText.vue";
 import SimplePagination from "../../Shared/Pagination/SimplePagination.vue";
 
-defineProps({
+const props = defineProps<{
     bookings: {
-        type: Object,
-        default: () => ({
-            data: [],
-            prev_page_url: null,
-            next_page_url: null,
-            current_page: 1,
-        }),
-    },
-});
+        type: Object;
+        default: () => {
+            data: [];
+            prev_page_url: null;
+            next_page_url: null;
+            current_page: 1;
+        };
+    };
+    searchFilter?: string;
+}>();
 
 const transmissionShort = (string) => {
     return string.substring(0, 1);
@@ -49,17 +51,26 @@ const getCategoryBadge = (category) => {
 </script>
 
 <template>
-    <div>
-        <div class="flex items-center space-x-5">
-            <Heading title="Bookings" />
-            <Button
-                title="Add"
-                icon="pi-plus"
-                :link="true"
-                link-type="Link"
-                style-type="success"
-                href="bookings/create"
-            />
+    <div class="w-fit">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-5">
+                <Heading title="Bookings" />
+                <Button
+                    title="Add"
+                    icon="pi-plus"
+                    :link="true"
+                    link-type="Link"
+                    style-type="success"
+                    href="bookings/create"
+                />
+            </div>
+            <div class="w-72">
+                <SearchText
+                    placeholder="Search Renter"
+                    request-url="/bookings"
+                    :filter="props.searchFilter"
+                />
+            </div>
         </div>
 
         <Card class="w-fit">
