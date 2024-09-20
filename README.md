@@ -4,6 +4,7 @@ This is my very first CRUD-app completely written by myself. It is a basic inter
 
 -   authentication
 -   creating, reading, updating and deleting existing bookings
+-   price calculation
 -   search for specific bookings
 
 I am very excited to keep working and expanding the functionalities as there is a lot more to cover.
