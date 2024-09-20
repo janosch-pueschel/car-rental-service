@@ -3,13 +3,7 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
-use App\Models\Booking;
-use App\Models\Driver;
-use App\Models\FuelType;
-use App\Models\Transmission;
-use App\Models\VehicleCategory;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
