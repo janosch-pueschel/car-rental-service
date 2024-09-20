@@ -5,17 +5,35 @@ import SearchText from "../../Shared/Search/SearchText.vue";
 import SimplePagination from "../../Shared/Pagination/SimplePagination.vue";
 
 const props = defineProps<{
-    bookings: {
-        type: Object;
-        default: () => {
-            data: [];
-            prev_page_url: null;
-            next_page_url: null;
-            current_page: 1;
-        };
-    };
+    bookings: Bookings;
     searchFilter?: string;
 }>();
+
+interface Booking {
+    id: number;
+    driver: {
+        first_name: string;
+        last_name: string;
+    };
+    vehicle_category: {
+        name: string;
+    };
+    fuel_type: {
+        name: string;
+    };
+    transmission: {
+        name: string;
+    };
+    departure: string;
+    return: string;
+}
+
+interface Bookings {
+    data: Booking[];
+    prev_page_url: string | null;
+    next_page_url: string | null;
+    current_page: number;
+}
 
 const transmissionShort = (string) => {
     return string.substring(0, 1);
