@@ -22,4 +22,3 @@ onMounted(() => {
         <slot></slot>
     </div>
 </template>
-animate-fade-out
